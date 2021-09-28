@@ -8,6 +8,6 @@
 </head>
 <body>
 	<h1>Hello Spring</h1>
-	<h4>${message.toUpperCase()}</h4>
+	<h4>${message}</h4>
 </body>
 </html>
