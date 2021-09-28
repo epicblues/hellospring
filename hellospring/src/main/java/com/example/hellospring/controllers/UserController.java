@@ -17,10 +17,10 @@ public class UserController {
 		return "/WEB-INF/views/joinform.jsp";
 	}
 	
-	@RequestMapping(value="/join", method=RequestMethod.POST)
-	public String join(@ModelAttribute UserVo uservo) {
+	@RequestMapping(value="/join", method=RequestMethod.POST) 
+	// POST로 받아도 똑같이 RequestParam으로 받을 수있다.
+	public String join(@ModelAttribute UserVo uservo ) {
 		System.out.println(uservo );
-		
 		
 		// 리다이렉트
 	
