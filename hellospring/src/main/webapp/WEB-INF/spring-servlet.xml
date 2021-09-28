@@ -10,7 +10,28 @@
 	<!-- <context:annotation-config /> -->
 	<!-- 컴포넌트 스캔 방식 설정 -->
 	<!-- 이것을 선언하면 굳이 annotation config을 쓸 필요가 없다? 알아서 annotation들을 spring이 읽으니까? -->
+	<!-- spring-servlet 웹 관련 -->
+	<!--  다루는 컴포넌트는 @Controller -->
 	<context:component-scan
-		base-package="com.example.hellospring.controllers"></context:component-scan>
+		base-package="com.example.hellospring.controllers">
+		<context:exclude-filter type="annotation" expression="org.springframework.stereotype.Repository"/>
+		<context:exclude-filter type="annotation" expression="org.springframework.stereotype.Service"/>
+		<!-- 컴포넌트 스캔 시 서비스와 repository는 검색 대상에서 제외한다. -->
+	</context:component-scan>
+	
+	<bean id="urlMapping"
+		class="org.springframework.web.servlet.handler.SimpleUrlHandlerMapping">
+		<property name="mappings">
+			<props>
+				<prop key="/nonannotation">nonAnnotationController</prop>
+			</props>
+		</property>	
+	</bean>
+	
+	
+	<!-- Non Annotation 방식 수동 bean 불러오기-->
+	<bean id="nonAnnotationController" 
+	class="com.example.hellospring.controllers.NonAnnotationController"/>
+	
 </beans>
 

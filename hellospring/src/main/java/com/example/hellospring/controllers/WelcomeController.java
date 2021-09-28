@@ -1,5 +1,8 @@
 package com.example.hellospring.controllers;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -38,7 +41,10 @@ public class WelcomeController {
 	// 요청 파라미터를 DTO 객체에 담아서 전달 @ModelAttribute
 	// 선언된 필드들만 setter로 설정해준다.
 	@RequestMapping("/using-vo")
-	public ModelAndView usingVo(@ModelAttribute RequestVo reqVo) {
+	public ModelAndView usingVo(@ModelAttribute RequestVo reqVo, HttpServletRequest req, HttpSession sess) {
+		
+		
+		System.out.println(req.getMethod());
 		ModelAndView mav = new ModelAndView();
 		mav.addObject("message", "Name : " + reqVo.getName() +", No : " + reqVo.getNo());
 		mav.setViewName("/WEB-INF/views/welcome.jsp");
